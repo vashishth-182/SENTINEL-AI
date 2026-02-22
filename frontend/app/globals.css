@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* 
+  SENTINEL AI - VIBE CODING THEME
+  Tailwind v4 Configuration
+*/
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-space-mono);
+  --font-syne: var(--font-syne);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0
+    }
+
+    to {
+      height: var(--radix-accordion-content-height)
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height)
+    }
+
+    to {
+      height: 0
+    }
+  }
+
+  --animate-scanline: scanline 4s linear infinite;
+
+  @keyframes scanline {
+    0% {
+      top: 0%;
+      opacity: 0;
+    }
+
+    5% {
+      opacity: 1;
+    }
+
+    95% {
+      opacity: 1;
+    }
+
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+}
+
+:root {
+  /* Fonts */
+  --font-inter: 'Inter', sans-serif;
+  --font-space-mono: 'Space Mono', monospace;
+  --font-syne: 'Syne', sans-serif;
+
+  /* 
+     SENTINEL DARK THEME (Default) 
+     We force dark mode logic even in root because the app is "Dark. Surgical. Authoritative."
+  */
+  --background: hsl(222 47% 6%);
+  /* #080c14 */
+  --foreground: hsl(213 31% 91%);
+
+  --card: hsl(222 47% 11%);
+  --card-foreground: hsl(213 31% 91%);
+
+  --popover: hsl(222 47% 6%);
+  --popover-foreground: hsl(213 31% 91%);
+
+  --primary: hsl(345 77% 59%);
+  /* #e94560 - Electric Red */
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(191 100% 50%);
+  /* #00d4ff - Cyan */
+  --secondary-foreground: hsl(222 47% 11%);
+
+  --muted: hsl(217 33% 17%);
+  --muted-foreground: hsl(215 20% 65%);
+
+  --accent: hsl(217 33% 20%);
+  --accent-foreground: hsl(210 40% 98%);
+
+  --destructive: hsl(0 62% 30%);
+  --destructive-foreground: hsl(210 40% 98%);
+
+  --border: hsl(217 33% 17%);
+  /* Dark border */
+  --input: hsl(217 33% 17%);
+  --ring: hsl(345 77% 59%);
+  /* Red ring */
+
+  --radius: 0.25rem;
+}
+
+/* 
+   We map .dark to the same colors because the app is ALWAYS dark conceptually, 
+   but we can keep light mode just in case, or map it to something inverted if requested.
+   For now, strictly enforce the Sentinel aesthetic.
+*/
+.dark {
+  --background: hsl(222 47% 6%);
+  --foreground: hsl(213 31% 91%);
+  --card: hsl(222 47% 11%);
+  --card-foreground: hsl(213 31% 91%);
+  --popover: hsl(222 47% 6%);
+  --popover-foreground: hsl(213 31% 91%);
+  --primary: hsl(345 77% 59%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(191 100% 50%);
+  --secondary-foreground: hsl(222 47% 11%);
+  --muted: hsl(217 33% 17%);
+  --muted-foreground: hsl(215 20% 65%);
+  --accent: hsl(217 33% 20%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 62% 30%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(217 33% 17%);
+  --input: hsl(217 33% 17%);
+  --ring: hsl(345 77% 59%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e94560;
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
